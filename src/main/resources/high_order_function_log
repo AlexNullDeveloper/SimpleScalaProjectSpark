@@ -1,0 +1,78 @@
+
+scala> List("Scala", "Python", "R")
+res0: List[String] = List(Scala, Python, R)
+
+scala> res0.map(lang => lang + "#")
+res1: List[String] = List(Scala#, Python#, R#)
+
+scala> res0.flatMap(lang => lang + "#")
+res2: List[Char] = List(S, c, a, l, a, #, P, y, t, h, o, n, #, R, #)
+
+scala> res0.filter(lang => lang.contains("S"))
+res3: List[String] = List(Scala)
+
+scala> List(1,2)
+res4: List[Int] = List(1, 2)
+
+scala> res4.map(println)
+1
+2
+res5: List[Unit] = List((), ())
+
+scala> res5.foreach(println)
+()
+()
+
+scala> res4.foreach(println)
+1
+2
+
+scala> List("Scala", "Simple", "Stellar")
+res8: List[String] = List(Scala, Simple, Stellar)
+
+scala> res8.forall(lang => lang.contains("S"))
+res9: Boolean = true
+
+scala> 1 to 5
+res10: scala.collection.immutable.Range.Inclusive = Range(1, 2, 3, 4, 5)
+
+scala> res10.reduce((acc, cur) => acc + cur)
+res11: Int = 15
+
+scala> res10.reduce(_ + _)
+res12: Int = 15
+
+scala> res10.foldLeft(0) { case (acc, cur) => acc + cur}
+res13: Int = 15
+
+scala> List[Int]().foldLeft(0) {case (acc, cur) => acc + cur}
+res14: Int = 0
+
+scala> 1 to 5
+res15: scala.collection.immutable.Range.Inclusive = Range(1, 2, 3, 4, 5)
+
+scala> res15.product
+res16: Int = 120
+
+scala> res15.exists(num => num == 3)
+res17: Boolean = true
+
+scala> res15.exists(num => num == 6)
+res18: Boolean = false
+
+scala> res15.find(num => num == 3)
+res19: Option[Int] = Some(3)
+
+scala> res15.find(num => num == 6)
+res20: Option[Int] = None
+
+scala> res15.groupBy(num => num % 2)
+res21: scala.collection.immutable.Map[Int,scala.collection.immutable.IndexedSeq[Int]] = Map(1 -> Vector(1, 3, 5), 0 -> Vector(2, 4))
+
+scala> res15.takeWhile(num => num < 3)
+res22: scala.collection.immutable.Range = Range(1, 2)
+
+scala> res15.dropWhile(num => num < 3)
+res23: scala.collection.immutable.Range = Range(3, 4, 5)
+
+scala> 
