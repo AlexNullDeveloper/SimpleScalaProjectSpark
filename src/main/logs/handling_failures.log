@@ -1,0 +1,65 @@
+scala> def toInt(s: String): Int = {
+  try {
+    s.toInt
+  } catch {
+    case _: NumberFormatException => 0
+  }
+}
+     |      |      |      |      |      | toInt: (s: String)Int
+
+scala> import scala.util.{Try, Success, Failure}
+import scala.util.{Try, Success, Failure}
+
+scala> Try("100".toInt)
+res0: scala.util.Try[Int] = Success(100)
+
+scala> Try("Martin".toInt)
+res1: scala.util.Try[Int] = Failure(java.lang.NumberFormatException: For input string: "Martin")
+
+scala> def makeInt(s: String): Int = Try(s.toInt) match {
+  case Success(n) => n
+  case Failure(_) => 0
+}
+     |      |      | makeInt: (s: String)Int
+
+scala> makeInt("35")
+res2: Int = 35
+
+scala> makeInt("James")
+res3: Int = 0
+
+scala> import scala.util._
+import scala.util._
+
+scala> def getScala: Try[String] = Success("Scala")
+getScala: scala.util.Try[String]
+
+scala> val scala = getScala
+scala: scala.util.Try[String] = Success(Scala)
+
+scala> scala.map(s => s.reverse)
+res4: scala.util.Try[String] = Success(alacS)
+
+#another console opened
+
+
+scala> import scala.util._
+import scala.util._
+
+scala> def getOuch: Try[String] = Failure(new Exception("Ouch"))
+getOuch: scala.util.Try[String]
+
+scala> val ouch = getOuch
+ouch: scala.util.Try[String] = Failure(java.lang.Exception: Ouch)
+
+scala> ouch.map(s => s.reverse)
+res0: scala.util.Try[String] = Failure(java.lang.Exception: Ouch)
+
+scala> Success("Scala").map(_.reverse)
+res1: scala.util.Try[String] = Success(alacS)
+
+scala> for {
+  language <- Success("Scala")
+  behaviour <- Success("rocks")
+} yield s"$language $behaviour"
+     |      |      | res2: scala.util.Try[String] = Success(Scala rocks)

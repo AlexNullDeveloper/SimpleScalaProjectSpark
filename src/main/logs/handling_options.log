@@ -1,0 +1,49 @@
+scala> def getMiddleName(value: Option[String]): String = {
+  value match {
+    case Some(middleName) => middleName
+    case None => "No middle name"
+  }
+}
+     |      |      |      |      | getMiddleName: (value: Option[String])String
+
+scala> getMiddleName(Option.apply("Hello"))
+res0: String = Hello
+
+scala> case class Customer(first: String = "", middle: Option[String] = None, last: String = "")
+defined class Customer
+
+scala> val martin = Customer("Martin", last = "Odersky")
+martin: Customer = Customer(Martin,None,Odersky)
+
+scala> getMiddleName(martin.middle)
+res1: String = No middle name
+
+scala> val jane = Customer("Jane", Option("D."), "Doe")
+jane: Customer = Customer(Jane,Some(D.),Doe)
+
+scala> getMiddleName(jane.middle)
+res2: String = D.
+
+scala> Option("Martin")
+res3: Option[String] = Some(Martin)
+
+scala> res3.map(name => println("Yay, " + name))
+Yay, Martin
+res4: Option[Unit] = Some(())
+
+scala> res3.foreach(name => println("Yay, " + name))
+Yay, Martin
+
+scala> None.foreach(name => println("Yay, " + name))
+
+scala> val martin = Option("Martin")
+martin: Option[String] = Some(Martin)
+
+scala> val jane = Option("Jane")
+jane: Option[String] = Some(Jane)
+
+scala> for {
+  m <- martin
+  j <- jane
+} yield (m + " is friends with " + j)
+     |      |      | res7: Option[String] = Some(Martin is friends with Jane)

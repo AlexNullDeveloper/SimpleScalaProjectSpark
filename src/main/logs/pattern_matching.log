@@ -1,0 +1,20 @@
+scala> val tuple = (1, "a", 2, "b")
+tuple: (Int, String, Int, String) = (1,a,2,b)
+
+scala> tuple._3
+res0: Int = 2
+
+scala> val (first, second, third, fourth) = tuple
+first: Int = 1
+second: String = a
+third: Int = 2
+fourth: String = b
+
+scala> 1 to 5
+res1: scala.collection.immutable.Range.Inclusive = Range(1, 2, 3, 4, 5)
+
+scala> res1.reduce((acc, cur) => acc + cur)
+res2: Int = 15
+
+scala> res1.foldLeft(0){ case (acc, cur) => acc + cur}
+res3: Int = 15

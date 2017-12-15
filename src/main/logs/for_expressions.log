@@ -1,0 +1,8 @@
+scala> val myNums = 1 to 3
+myNums: scala.collection.immutable.Range.Inclusive = Range(1, 2, 3)
+
+scala> myNums.map(i => (1 to i).map(j => i * j))
+res0: scala.collection.immutable.IndexedSeq[scala.collection.immutable.IndexedSeq[Int]] = Vector(Vector(1), Vector(2, 4), Vector(3, 6, 9))
+
+scala> myNums.flatMap(i => (1 to i).map(j => i * j))
+res1: scala.collection.immutable.IndexedSeq[Int] = Vector(1, 2, 4, 3, 6, 9)
